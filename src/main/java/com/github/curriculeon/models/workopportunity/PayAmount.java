@@ -1,16 +1,27 @@
 package com.github.curriculeon.models.workopportunity;
 
+import com.github.curriculeon.utils.EntityInterface;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author leonhunter
  * @created 03/22/2020 - 3:32 PM
  */
-public class PayAmount {
+@Entity
+public class PayAmount implements EntityInterface<Long> {
     enum TemporalUnit { MONTH, DAY, YEAR; }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private Double value;
     private Integer frequency;
     private TemporalUnit temporalUnit;
-
     public PayAmount() {
     }
 
@@ -18,6 +29,16 @@ public class PayAmount {
         this.value = value;
         this.frequency = frequency;
         this.temporalUnit = temporalUnit;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Double getValue() {

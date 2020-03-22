@@ -2,6 +2,7 @@ package com.github.curriculeon.controllers;
 
 import com.github.curriculeon.models.workopportunity.WorkOpportunity;
 import com.github.curriculeon.services.WorkOpportunityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-@RequestMapping(value = "/my-controller")
+@RequestMapping(value = "/workopportunity")
 public class WorkOpportunityController {
     private WorkOpportunityService service;
 
+    @Autowired
     public WorkOpportunityController(WorkOpportunityService service) {
         this.service = service;
     }
