@@ -1,6 +1,8 @@
 package com.github.curriculeon.models;
 
 
+import com.github.curriculeon.utils.EntityInterface;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +10,7 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class MyModel {
+public class MyModel implements EntityInterface<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

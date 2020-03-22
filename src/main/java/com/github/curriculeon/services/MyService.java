@@ -2,34 +2,17 @@ package com.github.curriculeon.services;
 
 import com.github.curriculeon.repositories.MyRepository;
 import com.github.curriculeon.models.MyModel;
+import com.github.curriculeon.utils.AbstractSimpleService;
 
-public class MyService {
-    private MyRepository repository;
-
-    public MyService(MyRepository repository) {
-        this.repository = repository;
+public class MyService extends AbstractSimpleService<Long, MyModel, MyRepository> {
+    public MyService(MyRepository crudRepository) {
+        super(crudRepository);
     }
 
-    public Iterable<MyModel> index() {
-        return repository.findAll();
-    }
-
-    public MyModel show(Long id) {
-        return repository.findById(id).get();
-    }
-
-    public MyModel create(MyModel myModel) {
-        return repository.save(myModel);
-    }
-
+    @Override
     public MyModel update(Long id, MyModel newMyModelData) {
-        MyModel originalMyModel = repository.findById(id).get();
+        MyModel originalMyModel = getRepository().findById(id).get();
         originalMyModel.setName(newMyModelData.getName());
-        return repository.save(originalMyModel);
-    }
-
-    public Boolean delete(Long id) {
-        repository.deleteById(id);
-        return true;
+        return getRepository().save(originalMyModel);
     }
 }
