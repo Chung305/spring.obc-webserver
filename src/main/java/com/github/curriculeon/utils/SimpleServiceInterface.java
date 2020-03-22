@@ -17,15 +17,16 @@ public interface SimpleServiceInterface<
 
     EntityType update(IdType id, EntityType newEntityData);
 
-    default void create(EntityType task) {
-        getRepository().save(task);
+    default EntityType create(EntityType entity) {
+        getRepository().save(entity);
+        return entity;
     }
 
-    default EntityType deleteById(IdType id) {
-        return deleteById(findById(id));
+    default EntityType delete(IdType id) {
+        return delete(findById(id));
     }
 
-    default EntityType deleteById(EntityType entity) {
+    default EntityType delete(EntityType entity) {
         getRepository().delete(entity);
         return entity;
     }

@@ -59,7 +59,7 @@ public class MyModelServiceTest {
         MyModel expectedMyModel = new MyModel();
         expectedMyModel.setId(expectedId);
         BDDMockito.
-                given(service.show(1L))
+                given(service.findById(1L))
                 .willReturn(expectedMyModel);
 
         // When
