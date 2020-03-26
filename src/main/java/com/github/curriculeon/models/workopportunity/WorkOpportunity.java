@@ -41,10 +41,6 @@ public class WorkOpportunity implements EntityInterface<Long> {
         this.description = description;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public League getLeague() {
         return league;
     }
@@ -104,5 +100,10 @@ public class WorkOpportunity implements EntityInterface<Long> {
     @Override
     public Long getId() {
         return this.id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 }

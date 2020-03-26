@@ -14,13 +14,15 @@ import javax.persistence.Id;
 public class League implements EntityInterface<Long> {
     @Id
     @GeneratedValue
+    private Long id;
+
     @Override
     public Long getId() {
-        return null;
+        return id;
     }
 
     @Override
     public void setId(Long id) {
-
+        this.id = id;
     }
 }
