@@ -21,6 +21,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+
 	<dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -45,6 +46,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+		<dependency>
+			<groupId>com.commercetools.sdk.jvm.core</groupId>
+			<artifactId>commercetools-models</artifactId>
+			<version>1.12.0</version>
+		</dependency>
+		<!-- Thanks for using https://jar-download.com -->
+
+
+
 	</dependencies>
 
 	<build>

@@ -4,7 +4,7 @@ package com.github.curriculeon.models.workopportunity;
  * @author leonhunter
  * @created 03/22/2020 _ 4:09 PM
  */
-public enum Country {
+public enum CountryEnum {
 
     AFGHANISTAN,
     ALBANIA,

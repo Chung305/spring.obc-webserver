@@ -1,7 +1,6 @@
 package com.github.curriculeon.controllers;
 
-import com.github.curriculeon.models.workopportunity.Country;
-import com.github.curriculeon.utils.controllers.SimpleControllerInterface;
+import com.github.curriculeon.models.workopportunity.CountryEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import java.util.stream.Collectors;
 /**
  * @author leonhunter
  * @created 03/27/2020 - 5:17 PM
+ * perhaps integrate  https://api.printful.com/countries
  */
 @Controller
 @RequestMapping(value = "/country")
@@ -22,7 +22,7 @@ public class CountryController {
 
     @GetMapping("/")
     public ResponseEntity<List<String>> index() {
-        return new ResponseEntity<>(Arrays.asList(Country.values())
+        return new ResponseEntity<>(Arrays.asList(CountryEnum.values())
                 .stream()
                 .map(country -> country.name())
                 .collect(Collectors.toList()), HttpStatus.OK);

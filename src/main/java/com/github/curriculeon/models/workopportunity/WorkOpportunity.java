@@ -3,8 +3,6 @@ package com.github.curriculeon.models.workopportunity;
 import com.github.curriculeon.utils.services.EntityInterface;
 
 import javax.persistence.*;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
@@ -23,7 +21,7 @@ public class WorkOpportunity implements EntityInterface<Long> {
     private PayAmount payAmount;
 
     @Enumerated
-    private Country countryOfPosting;
+    private CountryEnum countryOfPosting;
     private Boolean housingIncluded;
     private String title;
     private String dateNeededBy;
@@ -32,7 +30,7 @@ public class WorkOpportunity implements EntityInterface<Long> {
     public WorkOpportunity() {
     }
 
-    public WorkOpportunity(Long id, League league, PayAmount payAmount, Country countryOfPosting, Boolean housingIncluded, String title, String dateNeededBy, String description) {
+    public WorkOpportunity(Long id, League league, PayAmount payAmount, CountryEnum countryOfPosting, Boolean housingIncluded, String title, String dateNeededBy, String description) {
         this.id = id;
         this.league = league;
         this.payAmount = payAmount;
@@ -59,11 +57,11 @@ public class WorkOpportunity implements EntityInterface<Long> {
         this.payAmount = payAmount;
     }
 
-    public Country getCountryOfPosting() {
+    public CountryEnum getCountryOfPosting() {
         return countryOfPosting;
     }
 
-    public void setCountryOfPosting(Country countryOfPosting) {
+    public void setCountryOfPosting(CountryEnum countryOfPosting) {
         this.countryOfPosting = countryOfPosting;
     }
 
