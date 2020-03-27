@@ -1,12 +1,10 @@
-package com.github.curriculeon.models.workopportunity.printfulcountry;
+package com.github.curriculeon.models.workopportunity.printfullocation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.curriculeon.utils.Jsonifier;
 import com.github.curriculeon.utils.services.EntityInterface;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,15 +19,17 @@ public class PrintfulCountryResult implements EntityInterface<Long> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer code;
-    private List<PrintfulCountry> countryList;
+
+    @OneToMany
+    private List<PrintfulCountry> result;
 
     public PrintfulCountryResult() {
     }
 
-    public PrintfulCountryResult(Long id, Integer code, List<PrintfulCountry> countryList) {
+    public PrintfulCountryResult(Long id, Integer code, List<PrintfulCountry> result) {
         this.id = id;
         this.code = code;
-        this.countryList = countryList;
+        this.result = result;
     }
 
     @Override
@@ -50,11 +50,16 @@ public class PrintfulCountryResult implements EntityInterface<Long> {
         this.code = code;
     }
 
-    public List<PrintfulCountry> getCountryList() {
-        return countryList;
+    public List<PrintfulCountry> getResult() {
+        return result;
     }
 
-    public void setCountryList(List<PrintfulCountry> countryList) {
-        this.countryList = countryList;
+    public void setResult(List<PrintfulCountry> result) {
+        this.result = result;
+    }
+
+    @Override
+    public String toString() {
+        return Jsonifier.jsonify(this);
     }
 }

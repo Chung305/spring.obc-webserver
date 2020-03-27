@@ -1,4 +1,4 @@
-package com.github.curriculeon.controllers;
+package com.github.curriculeon.controllers.location;
 
 import com.github.curriculeon.models.workopportunity.CountryEnum;
 import org.springframework.http.HttpStatus;
@@ -19,12 +19,11 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping(value = "/country")
 public class CountryController {
-
     @GetMapping("/")
     public ResponseEntity<List<String>> index() {
         return new ResponseEntity<>(Arrays.asList(CountryEnum.values())
                 .stream()
-                .map(country -> country.name())
+                .map(Enum::name)
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 }

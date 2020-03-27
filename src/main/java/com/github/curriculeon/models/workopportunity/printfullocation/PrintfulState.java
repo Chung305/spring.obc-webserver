@@ -1,12 +1,10 @@
-package com.github.curriculeon.models.workopportunity.printfulcountry;
+package com.github.curriculeon.models.workopportunity.printfullocation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.curriculeon.utils.Jsonifier;
 import com.github.curriculeon.utils.services.EntityInterface;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author leonhunter
@@ -14,6 +12,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class PrintfulState implements EntityInterface<Long> {
+    @ManyToOne
+    private PrintfulCountry country;
+
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,5 +56,10 @@ public class PrintfulState implements EntityInterface<Long> {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return Jsonifier.jsonify(this);
     }
 }

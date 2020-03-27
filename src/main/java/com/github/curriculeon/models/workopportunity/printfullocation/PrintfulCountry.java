@@ -1,12 +1,10 @@
-package com.github.curriculeon.models.workopportunity.printfulcountry;
+package com.github.curriculeon.models.workopportunity.printfullocation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.curriculeon.utils.Jsonifier;
 import com.github.curriculeon.utils.services.EntityInterface;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -15,23 +13,28 @@ import java.util.List;
  */
 @Entity
 public class PrintfulCountry implements EntityInterface<Long> {
+    @ManyToOne
+    private PrintfulCountryResult result;
+
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
     private String code;
-    private List<PrintfulState> stateList;
+
+    @OneToMany
+    private List<PrintfulState> states;
 
     public PrintfulCountry() {
     }
 
-    public PrintfulCountry(Long id, String name, String code, List<PrintfulState> stateList) {
+    public PrintfulCountry(PrintfulCountryResult result, Long id, String name, String code, List<PrintfulState> states) {
+        this.result = result;
         this.id = id;
         this.name = name;
         this.code = code;
-        this.stateList = stateList;
+        this.states = states;
     }
 
     @Override
@@ -60,11 +63,24 @@ public class PrintfulCountry implements EntityInterface<Long> {
         this.code = code;
     }
 
-    public List<PrintfulState> getStateList() {
-        return stateList;
+    public PrintfulCountryResult getResult() {
+        return result;
     }
 
-    public void setStateList(List<PrintfulState> stateList) {
-        this.stateList = stateList;
+    public void setResult(PrintfulCountryResult result) {
+        this.result = result;
+    }
+
+    public List<PrintfulState> getStates() {
+        return states;
+    }
+
+    public void setStates(List<PrintfulState> states) {
+        this.states = states;
+    }
+
+    @Override
+    public String toString() {
+        return Jsonifier.jsonify(this);
     }
 }
