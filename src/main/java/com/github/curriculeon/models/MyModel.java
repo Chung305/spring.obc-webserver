@@ -1,7 +1,7 @@
 package com.github.curriculeon.models;
 
 
-import com.github.curriculeon.utils.EntityInterface;
+import com.github.curriculeon.utils.services.EntityInterface;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

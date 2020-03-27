@@ -1,6 +1,6 @@
 package com.github.curriculeon.models.workopportunity;
 
-import com.github.curriculeon.utils.EntityInterface;
+import com.github.curriculeon.utils.services.EntityInterface;
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,19 +12,6 @@ import java.util.stream.Collectors;
  */
 @Entity
 public class WorkOpportunity implements EntityInterface<Long> {
-    public static void main(String[] args) {
-        Set<String> countries = Arrays.asList(Locale.getAvailableLocales())
-                .stream()
-                .map(locale -> locale
-                        .getDisplayCountry()
-                        .toUpperCase()
-                        .replaceAll(" ", "_"))
-                .collect(Collectors.toCollection(TreeSet::new));
-        System.out.println(countries
-                .toString()
-                .replaceAll(",", ",\n"));
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

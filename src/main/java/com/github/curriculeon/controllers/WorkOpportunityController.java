@@ -2,6 +2,7 @@ package com.github.curriculeon.controllers;
 
 import com.github.curriculeon.models.workopportunity.WorkOpportunity;
 import com.github.curriculeon.services.WorkOpportunityService;
+import com.github.curriculeon.utils.controllers.SimpleControllerInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

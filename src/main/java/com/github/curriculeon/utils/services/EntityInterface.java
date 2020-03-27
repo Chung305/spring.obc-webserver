@@ -1,4 +1,4 @@
-package com.github.curriculeon.utils;
+package com.github.curriculeon.utils.services;
 
 import java.io.Serializable;
 

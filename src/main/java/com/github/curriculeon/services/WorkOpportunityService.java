@@ -2,8 +2,7 @@ package com.github.curriculeon.services;
 
 import com.github.curriculeon.models.workopportunity.WorkOpportunity;
 import com.github.curriculeon.repositories.WorkOpportunityRepository;
-import com.github.curriculeon.utils.SimpleServiceImpl;
-import com.github.curriculeon.utils.SimpleServiceInterface;
+import com.github.curriculeon.utils.services.SimpleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.github.curriculeon.models.workopportunity;
 
-import com.github.curriculeon.utils.EntityInterface;
+import com.github.curriculeon.utils.services.EntityInterface;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
