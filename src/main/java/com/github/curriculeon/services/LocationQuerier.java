@@ -6,8 +6,10 @@ import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulSt
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
@@ -32,15 +34,30 @@ public class LocationQuerier {
         return result;
     }
 
+    public List<String> getAllCountryNames() {
+        return getAllCountries()
+                .stream()
+                .map(PrintfulCountry::getName)
+                .collect(Collectors.toList());
+    }
+
 
     public List<PrintfulState> getAllStates(String countryName) {
-        List<PrintfulState> result = null;
+        List<PrintfulState> result = new ArrayList<>();
         for (PrintfulCountry country : getAllCountries()) {
             if (country.getName().equals(countryName)) {
                 result = country.getStates();
             }
         }
-        logger.info(String.format("List of all countries:\n\t", result));
+        logger.info(String.format("List of all states:\n\t", result));
         return result;
+    }
+
+
+    public List<String> getAllStateNames(String countryName) {
+        return getAllStates(countryName)
+                .stream()
+                .map(PrintfulState::getName)
+                .collect(Collectors.toList());
     }
 }
