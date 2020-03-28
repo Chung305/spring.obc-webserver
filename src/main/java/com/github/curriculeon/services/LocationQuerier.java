@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author leonhunter
@@ -41,11 +42,11 @@ public class LocationQuerier {
     }
 
 
-    public PrintfulCountry getCountry(String countryName) {
+    public PrintfulCountry getCountry(final String countryName) {
         logger.info(String.format("Attempting to find state named [ %s ]", countryName));
-        PrintfulCountry result =  getAllCountries()
+        PrintfulCountry result = getAllCountries()
                 .stream()
-                .filter(country -> country.getName().equalsIgnoreCase(countryName))
+                .filter(country -> country.getName().equalsIgnoreCase(countryName.replaceAll("_", " ")))
                 .findFirst()
                 .get();
         logger.info(String.format("Successfully retrieved country named [ %s ] ", countryName));
@@ -62,9 +63,11 @@ public class LocationQuerier {
 
 
     public List<String> getAllStateNames(String countryName) {
-        return getAllStates(countryName)
-                .stream()
-                .map(PrintfulState::getName)
-                .collect(Collectors.toList());
+        List<PrintfulState> allStates = getAllStates(countryName);
+        Stream<PrintfulState> allStatesStream = allStates.stream();
+        Stream<String> allStateNames = allStatesStream.map(PrintfulState::getName);
+        List<String> result = allStateNames.collect(Collectors.toList());;
+        return result;
+
     }
 }

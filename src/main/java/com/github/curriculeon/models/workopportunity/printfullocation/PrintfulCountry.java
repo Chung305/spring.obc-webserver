@@ -5,6 +5,7 @@ import com.github.curriculeon.utils.Jsonifier;
 import com.github.curriculeon.utils.services.EntityInterface;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,7 +73,7 @@ public class PrintfulCountry implements EntityInterface<Long> {
     }
 
     public List<PrintfulState> getStates() {
-        return states;
+        return states == null ? new ArrayList<>() : states;
     }
 
     public void setStates(List<PrintfulState> states) {
