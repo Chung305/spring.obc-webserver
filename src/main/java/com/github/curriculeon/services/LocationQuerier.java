@@ -24,13 +24,13 @@ public class LocationQuerier {
         logger.info(String.format("Attempting to all-country-results from endpoint [ %s ] ", endpoint));
         PrintfulCountryResult result = new RestTemplate().getForObject(endpoint, PrintfulCountryResult.class);
         logger.info(String.format("Successfully retrieved all-country-results from endpoint [ %s ] ", endpoint));
-        logger.info(String.format("List of all all-country-results:\n\t", result));
+        logger.info(String.format("List of all all-country-results:\n\t %s", result));
         return result;
     }
 
     public List<PrintfulCountry> getAllCountries() {
         List<PrintfulCountry> result = getAllCountryResult().getResult();
-        logger.info(String.format("List of all countries:\n\t", result));
+        logger.info(String.format("List of all countries:\n\t %s", result));
         return result;
     }
 
@@ -43,13 +43,14 @@ public class LocationQuerier {
 
 
     public List<PrintfulState> getAllStates(String countryName) {
+        logger.info(String.format("Attempting to get all states from [ %s ]", countryName));
         List<PrintfulState> result = new ArrayList<>();
         for (PrintfulCountry country : getAllCountries()) {
             if (country.getName().equals(countryName)) {
                 result = country.getStates();
             }
         }
-        logger.info(String.format("List of all states:\n\t", result));
+        logger.info(String.format("List of all states:\n\t %s", result));
         return result;
     }
 
