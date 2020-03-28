@@ -43,7 +43,7 @@ public class MyControllerTest {
                 .willReturn(Optional.of(myModel));
         String expectedContent = new ObjectMapper().writeValueAsString(myModel);
         this.mvc.perform(MockMvcRequestBuilders
-                .get("/bakers/" + givenId))
+                .get("/my-controller/" + givenId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(expectedContent));
     }
@@ -57,7 +57,7 @@ public class MyControllerTest {
 
         String expectedContent = new ObjectMapper().writeValueAsString(myModel);
         this.mvc.perform(MockMvcRequestBuilders
-                .post("/bakers/")
+                .post("/my-controller/")
                 .content(expectedContent)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
