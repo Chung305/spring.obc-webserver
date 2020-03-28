@@ -1,5 +1,6 @@
 package com.github.curriculeon.controllers.location;
 
+import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulCountry;
 import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulCountryResult;
 import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulState;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,8 @@ public class StateController {
     public ResponseEntity<List<String>> findByCountry(@PathVariable String countryName) {
         PrintfulCountryResult response = new RestTemplate().getForObject(endpoint, PrintfulCountryResult.class);
         System.out.println(response);
+        List<PrintfulCountry> countries = response.getResult();
+
         return new ResponseEntity<>(response
                 .getResult()
                 .stream()
