@@ -6,7 +6,6 @@ import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulSt
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -42,14 +41,21 @@ public class LocationQuerier {
     }
 
 
+    public PrintfulCountry getCountry(String countryName) {
+        logger.info(String.format("Attempting to find state named [ %s ]", countryName));
+        PrintfulCountry result =  getAllCountries()
+                .stream()
+                .filter(country -> country.getName().equalsIgnoreCase(countryName))
+                .findFirst()
+                .get();
+        logger.info(String.format("Successfully retrieved country named [ %s ] ", countryName));
+        logger.info(String.format("[ %s ] contents:\n\t", result));
+        return result;
+    }
+
     public List<PrintfulState> getAllStates(String countryName) {
         logger.info(String.format("Attempting to get all states from [ %s ]", countryName));
-        List<PrintfulState> result = new ArrayList<>();
-        for (PrintfulCountry country : getAllCountries()) {
-            if (country.getName().equals(countryName)) {
-                result = country.getStates();
-            }
-        }
+        List<PrintfulState> result = getCountry(countryName).getStates();
         logger.info(String.format("List of all states:\n\t %s", result));
         return result;
     }
