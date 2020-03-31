@@ -1,7 +1,8 @@
 package com.github.curriculeon.controllers.location;
 
 import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulCountry;
-import com.github.curriculeon.services.LocationQuerier;
+import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulState;
+import com.github.curriculeon.services.location.CountryControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,30 +21,46 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/country")
 public class CountryController {
-    private LocationQuerier locationQuerier;
+    private CountryControllerService service;
 
     @Autowired
-    public CountryController(LocationQuerier locationQuerier) {
-        this.locationQuerier = locationQuerier;
+    public CountryController(CountryControllerService service) {
+        this.service = service;
     }
 
     @GetMapping("/")
     public ResponseEntity<List<PrintfulCountry>> all() {
-        return new ResponseEntity<>(locationQuerier.getAllCountries(), HttpStatus.OK);
+        return new ResponseEntity<>(service.all(), HttpStatus.OK);
     }
 
     @GetMapping("/names")
     public ResponseEntity<List<String>> names() {
-        return new ResponseEntity<>(locationQuerier.getAllCountryNames(), HttpStatus.OK);
+        return new ResponseEntity<>(service.names(), HttpStatus.OK);
     }
 
     @GetMapping("/{countryName}")
-    public ResponseEntity<PrintfulCountry> getCountry(@PathVariable String countryName) {
-        return new ResponseEntity<>(locationQuerier.getCountry(countryName), HttpStatus.OK);
+    public ResponseEntity<PrintfulCountry> getCountry(
+            @PathVariable String countryName) {
+        return new ResponseEntity<>(service.getCountry(countryName), HttpStatus.OK);
     }
 
     @GetMapping("/{countryName}/states")
-    public ResponseEntity<List<String>> getStatesByCountry(@PathVariable String countryName) {
-        return new ResponseEntity<>(locationQuerier.getAllStateNames(countryName), HttpStatus.OK);
+    public ResponseEntity<List<PrintfulState>> getAllStates(
+            @PathVariable String countryName) {
+        return new ResponseEntity<>(service.getAllStates(countryName), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/{countryName}/states/names")
+    public ResponseEntity<List<String>> getAllStateNames(
+            @PathVariable String countryName) {
+        return new ResponseEntity<>(service.getAllStateNames(countryName), HttpStatus.OK);
+    }
+
+    @GetMapping("/{countryName}/states/{stateName}")
+    public ResponseEntity<PrintfulState> getState(
+            @PathVariable String countryName,
+            @PathVariable String stateName) {
+        return new ResponseEntity<>(service.getState(countryName, stateName), HttpStatus.OK);
     }
 }

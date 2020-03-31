@@ -1,6 +1,6 @@
 package com.github.curriculeon.controllers.location;
 
-import com.github.curriculeon.services.LocationQuerier;
+import com.github.curriculeon.services.location.LocationQuerierImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +18,10 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/state")
 public class StateController {
-    private LocationQuerier locationQuerier;
+    private LocationQuerierImpl locationQuerier;
 
     @Autowired
-    public StateController(LocationQuerier locationQuerier) {
+    public StateController(LocationQuerierImpl locationQuerier) {
         this.locationQuerier = locationQuerier;
     }
 
