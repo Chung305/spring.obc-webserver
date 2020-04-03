@@ -3,11 +3,15 @@ package com.github.curriculeon.models.eap;
 import com.github.curriculeon.utils.services.EntityInterface;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
 public class SignUpForm implements EntityInterface<Long> {
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String email;
