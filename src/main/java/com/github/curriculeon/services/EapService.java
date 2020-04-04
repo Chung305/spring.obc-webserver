@@ -15,20 +15,18 @@ public class EapService extends AbstractSimpleService<Long, SignUpForm, EapRepos
     }
 
     @Override
-    public SignUpForm updateById(Long id, SignUpForm newEntityData) {
-        SignUpForm databaseValue = findById(id);
-        databaseValue.setCity(newEntityData.getCity());
-        databaseValue.setCountry(newEntityData.getCountry());
-        databaseValue.setEmail(newEntityData.getEmail());
-        databaseValue.setEmailUpdate(newEntityData.isEmailUpdate());
-        databaseValue.setName(newEntityData.getName());
-        databaseValue.setPhone(newEntityData.getPhone());
-        databaseValue.setSignedUpDate(newEntityData.getSignedUpDate());
-        databaseValue.setState(newEntityData.getState());
-        databaseValue.setZipcode(newEntityData.getZipcode());
-        return getRepository().save(databaseValue);
+    public SignUpForm update(SignUpForm existingData, SignUpForm newEntityData) {
+        existingData.setCity(newEntityData.getCity());
+        existingData.setCountry(newEntityData.getCountry());
+        existingData.setEmail(newEntityData.getEmail());
+        existingData.setEmailUpdate(newEntityData.isEmailUpdate());
+        existingData.setName(newEntityData.getName());
+        existingData.setPhone(newEntityData.getPhone());
+        existingData.setSignedUpDate(newEntityData.getSignedUpDate());
+        existingData.setState(newEntityData.getState());
+        existingData.setZipcode(newEntityData.getZipcode());
+        return getRepository().save(existingData);
     }
-
 
     public SignUpForm contactFormSubmission(SignUpForm signUpForm) {
         return getRepository().save(signUpForm);

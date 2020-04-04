@@ -18,7 +18,7 @@ public class SimpleServiceImpl<
     }
 
     @Override
-    public EntityType updateById(IdType id, EntityType newEntityData) {
+    public EntityType update(EntityType existingData, EntityType newEntityData) {
         return null;
     }
 }
