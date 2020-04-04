@@ -2,12 +2,13 @@ package com.github.curriculeon.controllers;
 
 import com.github.curriculeon.models.workopportunity.WorkOpportunity;
 import com.github.curriculeon.services.WorkOpportunityService;
-import com.github.curriculeon.utils.controllers.SimpleControllerInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author leonhunter
@@ -30,8 +31,13 @@ public class WorkOpportunityController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WorkOpportunity> show(@PathVariable Long id) {
+    public ResponseEntity<WorkOpportunity> findById(@PathVariable Long id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/{gender}")
+    public ResponseEntity<List<WorkOpportunity>> findByGender(@PathVariable String gender) {
+        return new ResponseEntity<>(service.findAllWhere(workOpportunity -> workOpportunity.getGender().equals(gender)), HttpStatus.OK);
     }
 
     @PostMapping("/")
@@ -41,11 +47,12 @@ public class WorkOpportunityController {
 
     @PostMapping("/{id}")
     public ResponseEntity<WorkOpportunity> update(@PathVariable Long id, @RequestBody WorkOpportunity myModel) {
-        return new ResponseEntity<>(service.update(id, myModel), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateById(id, myModel), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<WorkOpportunity> destroy(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
+
 }

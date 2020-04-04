@@ -33,7 +33,7 @@ public class MyController {
 
     @PostMapping("/{id}")
     public ResponseEntity<MyModel> update(@PathVariable Long id, @RequestBody MyModel myModel) {
-        return new ResponseEntity<>(service.update(id, myModel), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateById(id, myModel), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

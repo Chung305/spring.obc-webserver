@@ -12,7 +12,7 @@ public class MyService extends AbstractSimpleService<Long, MyModel, MyRepository
     }
 
     @Override
-    public MyModel update(Long id, MyModel newMyModelData) {
+    public MyModel updateById(Long id, MyModel newMyModelData) {
         MyModel originalMyModel = getRepository().findById(id).get();
         originalMyModel.setName(newMyModelData.getName());
         return getRepository().save(originalMyModel);

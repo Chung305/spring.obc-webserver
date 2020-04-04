@@ -15,7 +15,19 @@ public interface SimpleServiceInterface<
 
     CrudRepositoryType getRepository();
 
-    EntityType update(IdType id, EntityType newEntityData);
+    EntityType update(EntityType existingData, EntityType newEntityData);
+
+    default EntityType updateById(IdType id, EntityType newEntityData) {
+        return updateWhere(entityType -> entityType.getId() == id, newEntityData).get(0);
+    }
+
+    default List<EntityType> updateWhere(Predicate<EntityType> predicate, EntityType newEntityData) {
+        return findAll()
+                .stream()
+                .filter(predicate)
+                .map(existingData -> update(existingData, newEntityData))
+                .collect(Collectors.toList());
+    }
 
     default EntityType create(EntityType entity) {
         getRepository().save(entity);

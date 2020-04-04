@@ -15,7 +15,7 @@ public class EapService extends AbstractSimpleService<Long, SignUpForm, EapRepos
     }
 
     @Override
-    public SignUpForm update(Long id, SignUpForm newEntityData) {
+    public SignUpForm updateById(Long id, SignUpForm newEntityData) {
         SignUpForm databaseValue = findById(id);
         databaseValue.setCity(newEntityData.getCity());
         databaseValue.setCountry(newEntityData.getCountry());

@@ -2,46 +2,36 @@ package com.github.curriculeon.services;
 
 import com.github.curriculeon.models.workopportunity.WorkOpportunity;
 import com.github.curriculeon.repositories.WorkOpportunityRepository;
+import com.github.curriculeon.utils.services.AbstractSimpleService;
 import com.github.curriculeon.utils.services.SimpleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author leonhunter
  * @created 03/22/2020 - 5:21 PM
  */
 @Service
-public class WorkOpportunityService {
-    private SimpleServiceImpl<Long, WorkOpportunity, WorkOpportunityRepository> simpleService;
-
-    @Autowired
-    public WorkOpportunityService(WorkOpportunityRepository repository) {
-        this.simpleService = new SimpleServiceImpl<>(repository);
+public class WorkOpportunityService extends AbstractSimpleService<Long, WorkOpportunity, WorkOpportunityRepository>  {
+    public WorkOpportunityService(WorkOpportunityRepository crudRepository) {
+        super(crudRepository);
     }
 
-    public WorkOpportunityRepository getRepository() {
-        return simpleService.getRepository();
-    }
-
-    public List<WorkOpportunity> findAll() {
-        return simpleService.findAll();
-    }
-
-    public WorkOpportunity findById(Long id) {
-        return simpleService.findById(id);
-    }
-
-    public WorkOpportunity create(WorkOpportunity myModel) {
-        return simpleService.create(myModel);
-    }
-
-    public WorkOpportunity update(Long id, WorkOpportunity myModel) {
-        return simpleService.update(id, myModel);
-    }
-
-    public WorkOpportunity delete(Long id) {
-        return simpleService.delete(id);
+    @Override
+    public WorkOpportunity update(WorkOpportunity databaseValue, WorkOpportunity newEntityData) {
+        databaseValue.setCountryOfPosting(newEntityData.getCountryOfPosting());
+        databaseValue.setDateNeededBy(newEntityData.getDateNeededBy());
+        databaseValue.setDescription(newEntityData.getDescription());
+        databaseValue.setGender(newEntityData.getGender());
+        databaseValue.setHousingIncluded(newEntityData.getHousingIncluded());
+        databaseValue.setLeague(newEntityData.getLeague());
+        databaseValue.setPayAmount(newEntityData.getPayAmount());
+        databaseValue.setTitle(newEntityData.getTitle());
+        getRepository().save(databaseValue);
+        return databaseValue;
     }
 }

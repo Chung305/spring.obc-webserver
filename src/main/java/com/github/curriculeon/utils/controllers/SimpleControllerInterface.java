@@ -33,7 +33,7 @@ public interface SimpleControllerInterface<
 
     @PostMapping("/{id}")
     default ResponseEntity<EntityType> update(@PathVariable IdType id, @RequestBody EntityType myModel) {
-        return new ResponseEntity<>(getService().update(id, myModel), HttpStatus.OK);
+        return new ResponseEntity<>(getService().updateById(id, myModel), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

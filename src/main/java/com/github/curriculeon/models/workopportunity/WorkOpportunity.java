@@ -26,11 +26,12 @@ public class WorkOpportunity implements EntityInterface<Long> {
     private String title;
     private String dateNeededBy;
     private String description;
+    private String gender;
 
     public WorkOpportunity() {
     }
 
-    public WorkOpportunity(Long id, League league, PayAmount payAmount, CountryEnum countryOfPosting, Boolean housingIncluded, String title, String dateNeededBy, String description) {
+    public WorkOpportunity(Long id, League league, PayAmount payAmount, CountryEnum countryOfPosting, Boolean housingIncluded, String title, String dateNeededBy, String description, String gender) {
         this.id = id;
         this.league = league;
         this.payAmount = payAmount;
@@ -95,6 +96,14 @@ public class WorkOpportunity implements EntityInterface<Long> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getGender() {
+        return this.gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
