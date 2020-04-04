@@ -2,29 +2,35 @@ package com.github.curriculeon.services;
 
 import com.github.curriculeon.models.eap.SignUpForm;
 import com.github.curriculeon.repositories.EapRepository;
+import com.github.curriculeon.utils.services.AbstractSimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EapService {
+public class EapService extends AbstractSimpleService<Long, SignUpForm, EapRepository> {
 
     @Autowired
-    private EapRepository eapRepository;
+    public EapService(EapRepository crudRepository) {
+                super(crudRepository);
+    }
+
+    @Override
+    public SignUpForm update(Long id, SignUpForm newEntityData) {
+        SignUpForm databaseValue = findById(id);
+        databaseValue.setCity(newEntityData.getCity());
+        databaseValue.setCountry(newEntityData.getCountry());
+        databaseValue.setEmail(newEntityData.getEmail());
+        databaseValue.setEmailUpdate(newEntityData.isEmailUpdate());
+        databaseValue.setName(newEntityData.getName());
+        databaseValue.setPhone(newEntityData.getPhone());
+        databaseValue.setSignedUpDate(newEntityData.getSignedUpDate());
+        databaseValue.setState(newEntityData.getState());
+        databaseValue.setZipcode(newEntityData.getZipcode());
+        return getRepository().save(databaseValue);
+    }
 
 
-    public ResponseEntity<?> contactFormSubmission(SignUpForm signUpForm) {
-        ResponseEntity<?> responseEntity;
-
-        try {
-
-            responseEntity = new ResponseEntity<>(eapRepository.save(signUpForm), HttpStatus.OK);
-        } catch (Exception e) {
-            responseEntity = new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-            e.printStackTrace();
-        }
-
-        return responseEntity;
+    public SignUpForm contactFormSubmission(SignUpForm signUpForm) {
+        return getRepository().save(signUpForm);
     }
 }
