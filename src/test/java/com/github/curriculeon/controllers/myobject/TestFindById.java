@@ -1,9 +1,8 @@
-package com.github.curriculeon.controllers.mymodel;
+package com.github.curriculeon.controllers.myobject;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.curriculeon.models.MyModel;
-import com.github.curriculeon.repositories.MyRepository;
+import com.github.curriculeon.models.MyObject;
+import com.github.curriculeon.repositories.MyObjectRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -32,7 +31,7 @@ public class TestFindById {
 
 
     @MockBean
-    private MyRepository repository;
+    private MyObjectRepository repository;
 
     @Test
     public void test1() throws Exception {
@@ -50,11 +49,11 @@ public class TestFindById {
     }
 
     private void test(Long givenId) throws Exception {
-        MyModel myModel = new MyModel();
+        MyObject myObject = new MyObject();
         BDDMockito
                 .given(repository.findById(givenId))
-                .willReturn(Optional.of(myModel));
-        String expectedContent = new ObjectMapper().writeValueAsString(myModel);
+                .willReturn(Optional.of(myObject));
+        String expectedContent = new ObjectMapper().writeValueAsString(myObject);
         this.mvc.perform(MockMvcRequestBuilders
                 .get("/my-controller/" + givenId))
                 .andExpect(MockMvcResultMatchers.status().isOk())

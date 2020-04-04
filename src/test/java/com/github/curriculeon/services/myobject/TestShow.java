@@ -1,9 +1,9 @@
-package com.github.curriculeon.services.mymodel;
+package com.github.curriculeon.services.myobject;
 
 import com.github.curriculeon.MyApplication;
-import com.github.curriculeon.controllers.MyController;
-import com.github.curriculeon.models.MyModel;
-import com.github.curriculeon.services.MyService;
+import com.github.curriculeon.controllers.MyObjectController;
+import com.github.curriculeon.models.MyObject;
+import com.github.curriculeon.services.MyObjectService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,13 +23,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ContextConfiguration(classes = MyApplication.class)
 public class TestShow {
     @MockBean
-    private MyService service;
+    private MyObjectService service;
 
-    private MyController controller;
+    private MyObjectController controller;
 
     @Before
     public void setup() {
-        this.controller = new MyController(service);
+        this.controller = new MyObjectController(service);
     }
 
     @Test
@@ -37,19 +37,19 @@ public class TestShow {
         // Given
         Long expectedId = 1L;
         HttpStatus expected = HttpStatus.OK;
-        MyModel expectedMyModel = new MyModel();
-        expectedMyModel.setId(expectedId);
+        MyObject expectedMyObject = new MyObject();
+        expectedMyObject.setId(expectedId);
         BDDMockito.
                 given(service.findById(1L))
-                .willReturn(expectedMyModel);
+                .willReturn(expectedMyObject);
 
         // When
-        ResponseEntity<MyModel> response = controller.show(expectedId);
+        ResponseEntity<MyObject> response = controller.show(expectedId);
         HttpStatus actual = response.getStatusCode();
-        MyModel actualMyModel = response.getBody();
+        MyObject actualMyObject = response.getBody();
 
         // Then
         Assert.assertEquals(expected, actual);
-        Assert.assertEquals(expectedMyModel, actualMyModel);
+        Assert.assertEquals(expectedMyObject, actualMyObject);
     }
 }

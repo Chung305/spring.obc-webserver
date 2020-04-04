@@ -10,17 +10,17 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class MyModel implements EntityInterface<Long> {
+public class MyObject implements EntityInterface<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    public MyModel() {
+    public MyObject() {
     }
 
-    public MyModel(Long id, String name) {
+    public MyObject(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -45,9 +45,9 @@ public class MyModel implements EntityInterface<Long> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MyModel myModel = (MyModel) o;
-        return Objects.equals(id, myModel.id) &&
-                Objects.equals(name, myModel.name);
+        MyObject myObject = (MyObject) o;
+        return Objects.equals(id, myObject.id) &&
+                Objects.equals(name, myObject.name);
     }
 
     @Override

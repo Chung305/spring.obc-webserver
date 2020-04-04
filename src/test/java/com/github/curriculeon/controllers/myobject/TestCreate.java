@@ -1,8 +1,8 @@
-package com.github.curriculeon.controllers.mymodel;
+package com.github.curriculeon.controllers.myobject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.curriculeon.models.MyModel;
-import com.github.curriculeon.repositories.MyRepository;
+import com.github.curriculeon.models.MyObject;
+import com.github.curriculeon.repositories.MyObjectRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -28,19 +28,19 @@ public class TestCreate {
     private MockMvc mvc;
 
     @MockBean
-    private MyRepository repository;
+    private MyObjectRepository repository;
 
     @Test
     public void testCreate() throws Exception {
-        test(new MyModel());
+        test(new MyObject());
     }
 
-    private void test(MyModel myModel) throws Exception {
+    private void test(MyObject myObject) throws Exception {
         BDDMockito
-                .given(repository.save(myModel))
-                .willReturn(myModel);
+                .given(repository.save(myObject))
+                .willReturn(myObject);
 
-        String expectedContent = new ObjectMapper().writeValueAsString(myModel);
+        String expectedContent = new ObjectMapper().writeValueAsString(myObject);
         this.mvc.perform(MockMvcRequestBuilders
                 .post("/my-controller/")
                 .content(expectedContent)
