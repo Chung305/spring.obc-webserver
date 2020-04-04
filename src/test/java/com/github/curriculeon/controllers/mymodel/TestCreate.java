@@ -1,4 +1,4 @@
-package com.github.curriculeon.controllers;
+package com.github.curriculeon.controllers.mymodel;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.curriculeon.models.MyModel;
@@ -16,41 +16,26 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Optional;
-
-
 /**
- * @author leon on 8/30/18.
+ * @author leonhunter
+ * @created 04/04/2020 - 12:22 AM
  */
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-public class MyControllerTest {
-
+public class TestCreate {
     @Autowired
     private MockMvc mvc;
-
 
     @MockBean
     private MyRepository repository;
 
     @Test
-    public void testShow() throws Exception {
-        Long givenId = 1L;
-        MyModel myModel = new MyModel();
-        BDDMockito
-                .given(repository.findById(givenId))
-                .willReturn(Optional.of(myModel));
-        String expectedContent = new ObjectMapper().writeValueAsString(myModel);
-        this.mvc.perform(MockMvcRequestBuilders
-                .get("/my-controller/" + givenId))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(expectedContent));
+    public void testCreate() throws Exception {
+        test(new MyModel());
     }
 
-    @Test
-    public void testCreate() throws Exception {
-        MyModel myModel = new MyModel();
+    private void test(MyModel myModel) throws Exception {
         BDDMockito
                 .given(repository.save(myModel))
                 .willReturn(myModel);
@@ -60,8 +45,7 @@ public class MyControllerTest {
                 .post("/my-controller/")
                 .content(expectedContent)
                 .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-            )
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.content().string(expectedContent));
     }

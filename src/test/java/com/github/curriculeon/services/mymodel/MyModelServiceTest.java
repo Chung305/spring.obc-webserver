@@ -1,10 +1,11 @@
-package com.github.curriculeon.services;
+package com.github.curriculeon.services.mymodel;
 
 
 import com.github.curriculeon.MyApplication;
 
 import com.github.curriculeon.controllers.MyController;
 import com.github.curriculeon.models.MyModel;
+import com.github.curriculeon.services.MyService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
