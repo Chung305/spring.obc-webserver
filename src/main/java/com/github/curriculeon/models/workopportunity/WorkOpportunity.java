@@ -20,8 +20,7 @@ public class WorkOpportunity implements EntityInterface<Long> {
     @OneToOne
     private PayAmount payAmount;
 
-    @Enumerated
-    private CountryEnum countryOfPosting;
+    private String countryOfPosting;
     private Boolean housingIncluded;
     private String title;
     private String dateNeededBy;
@@ -31,7 +30,7 @@ public class WorkOpportunity implements EntityInterface<Long> {
     public WorkOpportunity() {
     }
 
-    public WorkOpportunity(Long id, League league, PayAmount payAmount, CountryEnum countryOfPosting, Boolean housingIncluded, String title, String dateNeededBy, String description, String gender) {
+    public WorkOpportunity(Long id, League league, PayAmount payAmount, String countryOfPosting, Boolean housingIncluded, String title, String dateNeededBy, String description, String gender) {
         this.id = id;
         this.league = league;
         this.payAmount = payAmount;
@@ -58,11 +57,11 @@ public class WorkOpportunity implements EntityInterface<Long> {
         this.payAmount = payAmount;
     }
 
-    public CountryEnum getCountryOfPosting() {
+    public String getCountryOfPosting() {
         return countryOfPosting;
     }
 
-    public void setCountryOfPosting(CountryEnum countryOfPosting) {
+    public void setCountryOfPosting(String countryOfPosting) {
         this.countryOfPosting = countryOfPosting;
     }
 
