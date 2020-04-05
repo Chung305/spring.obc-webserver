@@ -1,6 +1,7 @@
 package com.github.curriculeon.controllers.location;
 
 import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulCountry;
+import com.github.curriculeon.models.workopportunity.printfullocation.PrintfulState;
 import com.github.curriculeon.services.LocationQuerier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,8 +45,13 @@ public class CountryController {
         return new ResponseEntity<>(locationQuerier.getCountry(countryName), HttpStatus.OK);
     }
 
-    @GetMapping("/{countryName}/states")
-    public ResponseEntity<List<String>> getStatesByCountry(@PathVariable String countryName) {
-        return new ResponseEntity<>(locationQuerier.getAllStateNames(countryName), HttpStatus.OK);
+    @GetMapping("/{countryName}/states/names")
+    public ResponseEntity<List<PrintfulState>> getAllStatesByCountry(@PathVariable String countryName) {
+        return new ResponseEntity<>(locationQuerier.getAllStatesByCountry(countryName), HttpStatus.OK);
+    }
+
+    @GetMapping("/{countryName}/states/")
+    public ResponseEntity<List<String>> getStateNamesByCountry(@PathVariable String countryName) {
+        return new ResponseEntity<>(locationQuerier.getAllStateNamesByCountry(countryName), HttpStatus.OK);
     }
 }

@@ -29,6 +29,6 @@ public class StateController {
 
     @GetMapping("/{countryName}")
     public ResponseEntity<List<String>> findByCountry(@PathVariable String countryName) {
-        return new ResponseEntity<>(locationQuerier.getAllStateNames(countryName), HttpStatus.OK);
+        return new ResponseEntity<>(locationQuerier.getAllStateNamesByCountry(countryName), HttpStatus.OK);
     }
 }

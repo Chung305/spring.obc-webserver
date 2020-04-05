@@ -54,7 +54,7 @@ public class LocationQuerier {
         return result;
     }
 
-    public List<PrintfulState> getAllStates(String countryName) {
+    public List<PrintfulState> getAllStatesByCountry(String countryName) {
         logger.info(String.format("Attempting to get all states from [ %s ]", countryName));
         List<PrintfulState> result = getCountry(countryName).getStates();
         logger.info(String.format("List of all states:\n\t %s", result));
@@ -62,8 +62,8 @@ public class LocationQuerier {
     }
 
 
-    public List<String> getAllStateNames(String countryName) {
-        List<PrintfulState> allStates = getAllStates(countryName);
+    public List<String> getAllStateNamesByCountry(String countryName) {
+        List<PrintfulState> allStates = getAllStatesByCountry(countryName);
         Stream<PrintfulState> allStatesStream = allStates.stream();
         Stream<String> allStateNames = allStatesStream.map(PrintfulState::getName);
         List<String> result = allStateNames.collect(Collectors.toList());;
