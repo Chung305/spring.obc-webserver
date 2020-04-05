@@ -6,6 +6,7 @@ import com.github.curriculeon.services.UserAccountService;
 import com.github.curriculeon.utils.controllers.AbstractSimpleController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @created 04/05/2020 - 6:26 PM
  */
 @Controller
+@CrossOrigin
 @RequestMapping(value = "/useraccount")
 public class UserAccountController extends AbstractSimpleController<Long, UserAccount, UserAccountRepository, UserAccountService> {
     public UserAccountController(UserAccountService service) {
