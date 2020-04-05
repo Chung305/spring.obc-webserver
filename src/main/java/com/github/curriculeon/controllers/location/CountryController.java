@@ -50,7 +50,7 @@ public class CountryController {
         return new ResponseEntity<>(locationQuerier.getAllStatesByCountry(countryName), HttpStatus.OK);
     }
 
-    @GetMapping("/{countryName}/states/")
+    @GetMapping("/{countryName}/states")
     public ResponseEntity<List<String>> getStateNamesByCountry(@PathVariable String countryName) {
         return new ResponseEntity<>(locationQuerier.getAllStateNamesByCountry(countryName), HttpStatus.OK);
     }
