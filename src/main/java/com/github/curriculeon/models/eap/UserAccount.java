@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-public class SignUpForm implements EntityInterface<Long> {
+public class UserAccount implements EntityInterface<Long> {
 
     @Id
     @GeneratedValue

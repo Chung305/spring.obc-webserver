@@ -1,7 +1,7 @@
 package com.github.curriculeon.controllers.eap;
 
-import com.github.curriculeon.models.eap.SignUpForm;
-import com.github.curriculeon.services.EapService;
+import com.github.curriculeon.models.eap.UserAccount;
+import com.github.curriculeon.services.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FormController {
 
     @Autowired
-    private EapService eapService;
+    private UserAccountService eapService;
 
     @RequestMapping("form/contact")
-    public ResponseEntity<?> contactFormSubmission(SignUpForm signUpForm){
+    public ResponseEntity<?> contactFormSubmission(UserAccount userAccount){
         try {
-            return new ResponseEntity<>(getService().contactFormSubmission(signUpForm), HttpStatus.OK);
+            return new ResponseEntity<>(getService().contactFormSubmission(userAccount), HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    private EapService getService() {
+    private UserAccountService getService() {
         return eapService;
     }
 
