@@ -4,12 +4,14 @@ import com.github.curriculeon.utils.services.EntityInterface;
 import com.github.curriculeon.utils.services.SimpleServiceInterface;
 import org.springframework.data.repository.CrudRepository;
 
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
  * @author leonhunter
  * @created 03/27/2020 - 5:23 PM
  */
+@MappedSuperclass
 public class AbstractSimpleController<
         IdType extends Serializable,
         EntityType extends EntityInterface<IdType>,
