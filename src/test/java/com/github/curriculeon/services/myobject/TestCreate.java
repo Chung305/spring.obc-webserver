@@ -66,6 +66,4 @@ public class TestCreate {
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(expectedMyObject, actualMyObject);
     }
-
-
 }

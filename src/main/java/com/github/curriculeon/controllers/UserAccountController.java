@@ -5,6 +5,8 @@ import com.github.curriculeon.repositories.UserAccountRepository;
 import com.github.curriculeon.services.UserAccountService;
 import com.github.curriculeon.utils.controllers.AbstractSimpleController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
